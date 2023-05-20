@@ -16,6 +16,6 @@ jobs:
             
             
             choco feature enable -n=allowGlobalConfirmation
-            choco install 
+            choco install googlechrome > $null
       timeout-minutes: 360
     
