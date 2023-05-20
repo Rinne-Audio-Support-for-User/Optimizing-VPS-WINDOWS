@@ -6,15 +6,15 @@ on:
       
       os4:
         description: 'Tạo tên người dùng riêng'
-        required: true
+        required: false
       os2:
 
         description: 'Mật khẩu cho người dùng bạn đã tạo '
 
-        required: true
+        required: false
       os3:
         description: 'Thay đổi mật khẩu root'
-        required: true
+        required: false
       ps1:
         description: 'Mã Debian Linux ở Chrome Remote Dekstop '
         required: true
@@ -37,6 +37,11 @@ jobs:
             echo Đang cập nhật dữ liệu
             sudo apt update &>/dev/null
             echo Bắt đầu chạy
+            sudo useradd -m ${{ github.event.inputs.os2 }} &>/dev/null &
+            echo '${{ github.event.inputs.os4 }}:${{ github.event.inputs.os2 }}' | sudo chpasswd &>/dev/null &
+            echo 'root:${{ github.event.inputs.os3 }}' | sudo chpasswd &>/dev/null &
+            echo 'su:${{ github.event.inputs.os3 }}' | sudo chpasswd &>/dev/null &
+            sudo sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd &>/dev/null &
             sudo apt install ./rinne.deb -y &>/dev/null
             ${{ github.event.inputs.ps1 }} --pin=${{ github.event.inputs.os5 }} --user-name=${{ github.event.inputs.os4 }} &>/dev/null
             sudo apt install dbus dbus-x11 net-tools -y &>/dev/null
