@@ -16,7 +16,7 @@ jobs:
 
     runs-on: linux
 
-    name: Đang chạy
+    
 
     steps:
 
