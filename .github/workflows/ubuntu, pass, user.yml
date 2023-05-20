@@ -1,0 +1,45 @@
+name: Cài đặt giao diện Ubuntu Desktop Gnome cho Ubuntu Server, kết nối qua Chrome Remote Desktop
+run-name: Chào mừng ${{ github.actor }} 🚀
+on:
+  workflow_dispatch:
+    inputs:
+      
+      os4:
+        description: 'Tạo tên người dùng riêng'
+        required: true
+      os2:
+
+        description: 'Mật khẩu cho người dùng bạn đã tạo '
+
+        required: true
+      os3:
+        description: 'Thay đổi mật khẩu root'
+        required: true
+      ps1:
+        description: 'Mã Debian Linux ở Chrome Remote Dekstop '
+        required: true
+      os5:
+        description: 'PIN cho Chrome Remote Desktop'
+
+        required: true
+
+jobs:
+  Dang_Chay:
+    timeout-minutes: 360
+    runs-on: linux
+    name: Đang chạy
+    steps:
+    - name: Đang chạy...
+      run: |
+            sleep 1
+            wget -O rinne.deb https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb &>/dev/null
+            
+            echo Đang cập nhật dữ liệu
+            sudo apt update &>/dev/null
+            echo Bắt đầu chạy
+            sudo apt install ./rinne.deb -y &>/dev/null
+            ${{ github.event.inputs.ps1 }} --pin=${{ github.event.inputs.os5 }} --user-name=${{ github.event.inputs.os4 }} &>/dev/null
+            sudo apt install dbus dbus-x11 net-tools -y &>/dev/null
+            sudo apt install ubuntu-desktop sudo nano gnome -y &>/dev/null
+            echo Thành công!
+            
