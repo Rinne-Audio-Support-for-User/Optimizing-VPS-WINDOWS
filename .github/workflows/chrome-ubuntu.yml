@@ -1,0 +1,35 @@
+name: Cập nhật Ubuntu, Debian Linux và cài đặt Chrome cho Ubuntu, Debian Linux
+
+run-name: Chào mừng ${{ github.actor }} 🚀
+
+on:
+
+  workflow_dispatch:
+
+    
+
+jobs:
+
+  Dang_Chay:
+
+    timeout-minutes: 360
+
+    runs-on: linux
+
+    name: Đang chạy
+
+    steps:
+
+    - name: Đang chạy...
+
+      run: |
+
+            sleep 1
+            echo Cập nhật Ubuntu, Debian
+            sudo apt update &>/dev/null
+            sudo apt upgrade -y &>/dev/null
+            wget -O rinne.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &>/dev/null 
+            sudo apt install ./rinne.deb &>/dev/null
+            echo Thành Công!
+            
+      timeout-minutes: 360
