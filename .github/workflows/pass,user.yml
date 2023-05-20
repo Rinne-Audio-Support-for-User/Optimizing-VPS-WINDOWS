@@ -16,7 +16,7 @@ on:
         description: 'Thay đổi mật khẩu Administrator'
         required: true
 jobs:
-  Windows_Server_2019:
+  Dang_Chay:
     timeout-minutes: 360
     runs-on: windows
     name: Đang chạy
