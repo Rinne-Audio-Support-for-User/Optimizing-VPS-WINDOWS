@@ -1,0 +1,32 @@
+name: Thay đổi mật khẩu, thêm người dùng cho Windows
+run-name: Chào mừng ${{ github.actor }} 🚀
+on:
+  workflow_dispatch:
+    inputs:
+      
+      os4:
+        description: 'Tạo tên người dùng riêng'
+        required: true
+      os2:
+
+        description: 'Mật khẩu cho người dùng bạn đã tạo '
+
+        required: true
+      os3:
+        description: 'Thay đổi mật khẩu Administrator'
+        required: true
+jobs:
+  Windows_Server_2019:
+    timeout-minutes: 360
+    runs-on: windows
+    name: Đang chạy
+    steps:
+    - name: Đang chạy...
+      run: |
+            sleep 1
+            net user ${{ github.event.inputs.os4 }} ${{ github.event.inputs.os2 }} /add > $null
+            net localgroup administrators ${{ github.event.inputs.os4 }} /add > $null
+            net user Administrator ${{ github.event.inputs.os2 }} > $null
+            echo Thành công!!
+      timeout-minutes: 360
+    
