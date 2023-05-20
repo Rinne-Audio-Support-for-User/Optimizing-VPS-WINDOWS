@@ -1,0 +1,21 @@
+name: Cài đặt Chrome cho Windows
+run-name: Chào mừng ${{ github.actor }} 🚀
+on:
+  workflow_dispatch:
+    
+jobs:
+  Dang_Chay:
+    timeout-minutes: 360
+    runs-on: windows
+    name: Đang chạy
+    steps:
+    - name: Đang chạy...
+      run: |
+            sleep 1
+            Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+            
+            
+            choco feature enable -n=allowGlobalConfirmation
+            choco install 
+      timeout-minutes: 360
+    
